@@ -3,37 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samastha 100th Anniversary - Digital Supporter Card</title>
-    <!-- Tailwind CSS for modern design -->
+    <title>Samastha Centenary - Official Supporter Card</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for English & Malayalam -->
+    <!-- Google Fonts for Malayalam & English -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- html2canvas library for high-quality card download -->
+    <!-- html2canvas for HD Download -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
         body {
             font-family: 'Poppins', 'Manjari', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            background: linear-gradient(135deg, #111827 0%, #064e3b 100%);
         }
-        /* This is the actual card that will be converted to an image */
+        
+        /* The Master Canvas Card configured to align perfectly with back ground.jpg dimensions */
         #digitalCard {
-            width: 500px;
-            height: 650px;
-            /* BACKGROUND IMAGE TEMPLATE: നിന്റെ കയ്യിലുള്ള നല്ലൊരു ബാക്ക്ഗ്രൗണ്ട് ഇമേജ് ലിങ്ക് താഴെ നൽകാം */
-            background-image: linear-gradient(to bottom, rgba(4, 120, 87, 0.9), rgba(6, 78, 59, 0.95)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500');
-            background-size: cover;
-            background-position: center;
+            width: 800px;
+            height: 1000px;
+            background-image: url('back ground.jpg'); /* ഇമേജ് ഇതേ പേരിൽ ഫോൾഡറിൽ ഉണ്ടാവണം */
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* Responsive Scaling for Mobile Previews */
+        .preview-container {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
         }
         .preview-scale {
-            transform: scale(0.7);
-            transform-origin: top center;
+            transform: scale(0.5);
+            transform-origin: top left;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         @media (min-width: 640px) {
+            .preview-container {
+                max-w-xl: 800px;
+                width: 800px;
+                height: 1000px;
+            }
             .preview-scale {
                 transform: scale(1);
             }
@@ -42,127 +60,87 @@
 </head>
 <body class="min-h-screen text-slate-100 flex flex-col justify-between">
 
-    <!-- Top Navigation Header -->
-    <header class="bg-slate-900/80 backdrop-blur-md border-b border-emerald-500/20 py-4 px-6 sticky top-0 z-50">
+    <!-- Header Frame -->
+    <header class="bg-slate-900/90 backdrop-blur-md border-b border-emerald-500/20 py-4 px-6 sticky top-0 z-50 shadow-lg">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="bg-emerald-600 text-white p-2 rounded-xl shadow-md font-bold text-sm tracking-wider">
-                    100 YEAR
+                <div class="bg-amber-500 text-slate-950 px-2.5 py-1 rounded-xl font-bold text-xs tracking-wider">
+                    CENTENARY
                 </div>
                 <div>
-                    <h1 class="text-base font-bold text-white tracking-wide">SAMASTHA 100th ANNIVERSARY</h1>
-                    <p class="text-[10px] text-emerald-400 font-medium">Official Digital Campaign Matrix • 2027 January</p>
+                    <h1 class="text-sm font-bold text-white tracking-wide">SAMASTHA CENTENARY CAMPAIGN</h1>
+                    <p class="text-[10px] text-emerald-400 font-medium">Official Digital Supporter Card Generator • 2027</p>
                 </div>
             </div>
-            <i class="fa-solid fa-mosque text-xl text-emerald-500"></i>
+            <i class="fa-solid fa-star-and-crescent text-xl text-amber-400"></i>
         </div>
     </header>
 
-    <!-- Main Content Grid -->
-    <main class="max-w-6xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start w-full flex-grow">
+    <!-- Main Workspace -->
+    <main class="max-w-6xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full flex-grow">
         
-        <!-- Left Side: User Input Form Panel -->
-        <section class="lg:col-span-5 bg-slate-950/60 border border-slate-800 p-5 md:p-6 rounded-3xl backdrop-blur-sm space-y-5 shadow-2xl">
-            <div class="border-b border-slate-800 pb-3">
-                <h2 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
-                    <i class="fa-solid fa-id-card"></i> സപ്പോർട്ടർ കാർഡ് ഉണ്ടാക്കാം
+        <!-- Left Sidebar Form -->
+        <section class="lg:col-span-5 bg-slate-950/80 border border-slate-800 p-5 rounded-3xl space-y-4 shadow-xl">
+            <div class="border-b border-slate-800 pb-2">
+                <h2 class="text-base font-bold text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-user-pen"></i> നിങ്ങളുടെ വിവരങ്ങൾ നൽകുക
                 </h2>
-                <p class="text-xs text-slate-400 mt-1">നിങ്ങളുടെ വിവരങ്ങളും ഫോട്ടോയും നൽകി കാർഡ് മിനിറ്റുകൾക്കുള്ളിൽ ഡൗൺലോഡ് ചെയ്യാം.</p>
+                <p class="text-[11px] text-slate-400">പോസ്റ്ററിലെ നിശ്ചിത ഫ്രെയിമിലേക്ക് നിങ്ങളുടെ ഫോട്ടോയും പേരും തനിയെ സെറ്റ് ആകും.</p>
             </div>
 
-            <div class="space-y-4">
-                <!-- Name Input -->
+            <div class="space-y-3">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1.5">നിങ്ങളുടെ പേര് (Your Name)</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500 text-xs"><i class="fa-solid fa-user"></i></span>
-                        <input type="text" id="inputName" oninput="updateCard()" placeholder="eg: മുഹമ്മദ്‌ അലി" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-sm font-medium outline-none focus:border-emerald-500 text-white transition-all">
-                    </div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">നിങ്ങളുടെ പേര് (Name)</label>
+                    <input type="text" id="inputName" oninput="updateCard()" placeholder="eg: മുഹമ്മദ്‌ അലി" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-medium outline-none focus:border-amber-500 text-white">
                 </div>
 
-                <!-- Mahallu/Place Input -->
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1.5">സ്ഥലം / മഹല്ല് (Place/Mahallu)</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500 text-xs"><i class="fa-solid fa-location-dot"></i></span>
-                        <input type="text" id="inputPlace" oninput="updateCard()" placeholder="eg: താനൂർ" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-sm font-medium outline-none focus:border-emerald-500 text-white transition-all">
-                    </div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">സ്ഥലം / യൂണിറ്റ്  (Place)</label>
+                    <input type="text" id="inputPlace" oninput="updateCard()" placeholder="eg: താനൂർ" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs font-medium outline-none focus:border-amber-500 text-white">
                 </div>
 
-                <!-- Photo Upload Input -->
                 <div>
-                    <label class="block text-xs font-semibold text-slate-400 mb-1.5">നിങ്ങളുടെ ഫോട്ടോ (Upload Photo)</label>
-                    <label class="border-2 border-dashed border-slate-700 hover:border-emerald-500/50 rounded-xl p-4 flex flex-col items-center justify-center gap-2 cursor-pointer bg-slate-900/40 transition-all group">
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">നിങ്ങളുടെ ഫോട്ടോ (Upload Image)</label>
+                    <label class="border border-dashed border-slate-700 hover:border-emerald-500 rounded-xl p-3 flex flex-col items-center justify-center gap-1 cursor-pointer bg-slate-900/50 transition-all">
                         <input type="file" id="inputPhoto" accept="image/*" onchange="previewPhoto(event)" class="hidden">
-                        <div class="bg-slate-800 text-slate-400 group-hover:text-emerald-400 p-2.5 rounded-full transition-all">
-                            <i class="fa-solid fa-cloud-arrow-up text-lg"></i>
-                        </div>
-                        <span class="text-xs font-medium text-slate-400 group-hover:text-slate-300">മൊബൈലിൽ നിന്ന് ഫോട്ടോ തിരഞ്ഞെടുക്കുക</span>
+                        <i class="fa-solid fa-camera text-slate-500 text-base"></i>
+                        <span class="text-[11px] text-slate-400">ഫോട്ടോ സെലക്ട് ചെയ്യുക</span>
                     </label>
                 </div>
             </div>
 
-            <!-- Action Button: Download -->
-            <button onclick="downloadCard()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-3 px-4 rounded-xl text-sm shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 transition-all mt-2">
-                <i class="fa-solid fa-circle-down text-base"></i> ഡൗൺലോഡ് കാർഡ് (Download HD)
+            <button onclick="downloadCard()" class="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md transition-all">
+                <i class="fa-solid fa-download"></i> ഡൗൺലോഡ് എച്ച്ഡി കാർഡ് (Download)
             </button>
         </section>
 
-        <!-- Right Side: Card Live Canvas View Panel -->
+        <!-- Right Side Live View Layout -->
         <section class="lg:col-span-7 flex flex-col items-center justify-center">
-            <p class="text-xs font-semibold text-slate-400 mb-3 block lg:hidden"><i class="fa-solid fa-eye mr-1"></i> Live Preview താഴെ കാണാം</p>
-            
-            <!-- Scaled wrapper for mobile screens to avoid breaking layouts -->
-            <div class="w-full overflow-hidden flex justify-center h-[470px] sm:h-auto">
-                <div class="preview-scale shadow-2xl rounded-3xl overflow-hidden border border-emerald-500/20">
+            <!-- Container built to dynamically display the heavy canvas in scale on smaller phones -->
+            <div class="preview-container bg-slate-900 rounded-2xl shadow-2xl border border-slate-800">
+                <div class="preview-scale">
                     
-                    <!-- THE MASTER DIGITAL CARD BODY -->
-                    <div id="digitalCard" class="relative flex flex-col justify-between p-8 text-center shadow-inner">
+                    <!-- THE LIVE DIGITAL CANVAS SHEET -->
+                    <div id="digitalCard">
                         
-                        <!-- Top Celebration Header Frame -->
-                        <div class="space-y-2 z-10">
-                            <!-- SAMASTHA 100 LOGO: സമസ്തയുടെ ലോഗോ ലിങ്ക് ഇവിടെ നൽകാം -->
-                            <div class="mx-auto w-16 h-16 bg-white/10 backdrop-blur-md rounded-full border border-white/20 p-2 flex items-center justify-center shadow-md">
-                                <i class="fa-solid fa-star-and-crecent text-3xl text-amber-400"></i>
-                            </div>
-                            <h3 class="text-white font-bold text-xs tracking-widest uppercase">സൂചനാ രേഖ • ചരിത്ര സമാഗമം</h3>
-                            <h2 class="text-2xl font-black text-amber-400 tracking-tight leading-tight">സമസ്ത 100-ാം വാർഷികം</h2>
-                            <p class="text-[11px] font-medium text-slate-200">2027 JANUARY • VARKALA ATHIKKATTU VAYAL</p>
+                        <!-- Dynamic Supporter Photo Layer Positioned mathematically over the poster's white square area -->
+                        <div style="position: absolute; top: 692px; left: 520px; width: 232px; height: 185px; overflow: hidden; border-radius: 20px 20px 0 0; display: flex; align-items: center; justify-content: center;">
+                            <img id="cardPhoto" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=250" class="w-full h-full object-cover">
                         </div>
 
-                        <!-- Center Frame: Uploaded Supporter Profile Photo -->
-                        <div class="relative my-auto flex justify-center z-10">
-                            <div class="w-44 h-44 rounded-full border-4 border-amber-400 shadow-2xl overflow-hidden bg-slate-800 flex items-center justify-center">
-                                <img id="cardPhoto" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200" alt="Supporter Photo" class="w-full h-full object-cover">
-                            </div>
-                            <!-- Badge Ribbon overlaid on photo -->
-                            <div class="absolute -bottom-2 bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 text-[10px] font-black px-4 py-1 rounded-full shadow-md uppercase tracking-wider border border-white/40">
-                                OFFICIAL SUPPORTER
-                            </div>
+                        <!-- Supporter Credentials Text Strings arranged over the built-in identity dotted lines -->
+                        <div style="position: absolute; top: 878px; left: 523px; width: 226px; text-align: center; font-family: 'Manjari', sans-serif; font-weight: 700; color: #1e293b; z-index: 10;">
+                            <div id="cardName" style="font-size: 19px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">മുഹമ്മദ്‌ അലി</div>
+                            <div id="cardPlace" style="font-size: 14px; color: #047857; margin-top: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">താനൂർ</div>
                         </div>
 
-                        <!-- Bottom Frame: User Credentials Layout & Pledge Text -->
-                        <div class="space-y-4 bg-black/40 backdrop-blur-sm p-4 rounded-2xl border border-white/5 z-10">
-                            <div class="space-y-0.5">
-                                <h1 id="cardName" class="text-xl font-bold text-white tracking-wide">മുഹമ്മദ്‌ അലി</h1>
-                                <p id="cardPlace" class="text-xs font-semibold text-emerald-400 tracking-medium flex items-center justify-center gap-1">
-                                    <i class="fa-solid fa-location-dot text-[10px]"></i> താനൂർ
-                                </p>
-                            </div>
-                            <div class="border-t border-white/10 pt-2.5">
-                                <p class="text-xs text-slate-200 leading-relaxed font-medium">
-                                    "ചരിത്ര മുന്നേറ്റത്തിൽ ഞാനും പങ്കാളിയാകുന്നു... <br>
-                                    സമ്മേളന വിജയത്തിനായി ഒന്നിച്ച് അണിനിരക്കാം."
-                                </p>
-                            </div>
+                        <!-- Brand Identity Print Tag ordered by user requirements at the lowest border safe layout area -->
+                        <div style="position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #64748b; font-family: 'Poppins', sans-serif; text-transform: uppercase; opacity: 0.85;">
+                            Powered by ATAVA DIGITAL SERVICES & TRADING
                         </div>
 
-                        <!-- Subtle Artistic Safe Footer Design Element inside canvas -->
-                        <div class="absolute bottom-2 left-0 right-0 text-center text-[9px] text-white/30 tracking-widest font-bold uppercase pointer-events-none">
-                            Samastha 100 Campaigns • Digital Identity Matrix
-                        </div>
                     </div>
-                    <!-- END OF MASTER CARD BODY -->
+                    <!-- CANVAS SHEET END -->
 
                 </div>
             </div>
@@ -171,22 +149,20 @@
 
     <!-- App Branding Footer -->
     <footer class="bg-slate-950 border-t border-slate-900 text-center py-3 px-4 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-        <p>Campaign Platform Developed by <strong class="text-slate-400">ATAVA DIGITAL SERVICES & TRADING</strong></p>
-        <p class="text-emerald-600 font-medium"><i class="fa-solid fa-shield-halved"></i> 100% Free Client-Side Rendering Engine</p>
+        <p>Campaign Engine Matrix Designed by <strong class="text-slate-400">ATAVA DIGITAL SERVICES & TRADING</strong></p>
+        <p class="text-emerald-500 font-medium"><i class="fa-solid fa-bolt"></i> Ultra HD Graphics Processor Enabled</p>
     </footer>
 
-    <!-- JavaScript Business Logic for Interactivity -->
+    <!-- Image Processing Engine scripts -->
     <script>
-        // Update live card text from input fields immediately
         function updateCard() {
             const name = document.getElementById('inputName').value.trim();
             const place = document.getElementById('inputPlace').value.trim();
 
-            document.getElementById('cardName').innerText = name ? name : "Your Name Here";
-            document.getElementById('cardPlace').innerHTML = place ? `<i class="fa-solid fa-location-dot text-[10px]"></i> ${place}` : `<i class="fa-solid fa-location-dot text-[10px]"></i> Your Place Here`;
+            document.getElementById('cardName').innerText = name ? name : "നിങ്ങളുടെ പേര്";
+            document.getElementById('cardPlace').innerText = place ? place : "നിങ്ങളുടെ സ്ഥലം";
         }
 
-        // Preview local mobile uploaded image on canvas view
         function previewPhoto(event) {
             const file = event.target.files[0];
             if (file) {
@@ -198,22 +174,19 @@
             }
         }
 
-        // Trigger safe html2canvas processing tool for download file output
         function downloadCard() {
             const card = document.getElementById('digitalCard');
-            const nameInput = document.getElementById('inputName').value.trim() || 'samastha_supporter';
-            const fileName = nameInput.toLowerCase().replace(/\s+/g, '_') + '_100_card.png';
+            const nameInput = document.getElementById('inputName').value.trim() || 'samastha_centenary';
+            const fileName = nameInput.toLowerCase().replace(/\s+/g, '_') + '_supporter.png';
 
-            // Show a quick alert/loading status for better UX
             const btn = document.querySelector('button[onclick="downloadCard()"]');
             const originalText = btn.innerHTML;
-            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Generating HD Card...`;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Processing HD Render...`;
             btn.disabled = true;
 
-            // Render option properties configured for premium device quality output
             html2canvas(card, {
-                useCORS: true, 
-                scale: 3, // Multiplies output resolution to look crystal clear on modern phones
+                useCORS: true,
+                scale: 3, // Ultra HD Processing Resolution
                 allowTaint: true
             }).then(canvas => {
                 const link = document.createElement('a');
@@ -221,11 +194,10 @@
                 link.href = canvas.toDataURL('image/png');
                 link.click();
 
-                // Restore state control
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }).catch(err => {
-                alert("കാർഡ് ഡൗൺലോഡ് ചെയ്യുന്നതിൽ ചെറിയൊരു തടസ്സം! വീണ്ടും ശ്രമിക്കുക.");
+                alert("ഡൗൺലോഡ് ചെയ്യുന്നതിൽ പിശക്! വീണ്ടും ശ്രമിക്കുക.");
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             });
