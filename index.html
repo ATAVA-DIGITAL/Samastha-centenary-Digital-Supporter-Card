@@ -21,18 +21,18 @@
             background: linear-gradient(135deg, #111827 0%, #064e3b 100%);
         }
         
-        /* The Master Canvas Card configured to align perfectly with back ground_2.jpg dimensions (800x1000) */
+        /* The Master Canvas Card perfectly aligned with bh04.jpg dimensions (800x1000) */
         #digitalCard {
             width: 800px;
             height: 1000px;
-            background-image: url('back ground_2.jpg'); /* പുതിയ ഫയൽ നെയിം ഇവിടെ നൽകിയിട്ടുണ്ട് */
+            background-image: url('bh04.jpg'); /* പുതിയ ഫയൽ നെയിം ഇവിടെ കൃത്യമായി നൽകിയിട്ടുണ്ട് */
             background-size: 100% 100%;
             background-repeat: no-repeat;
             position: relative;
             flex-shrink: 0;
         }
 
-        /* Responsive Scaling Box to fit neatly on mobile screens without clipping */
+        /* Responsive Preview Box logic */
         .preview-outer {
             width: 100%;
             max-width: 360px;
@@ -76,13 +76,13 @@
     <!-- Main Workspace -->
     <main class="max-w-6xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full flex-grow">
         
-        <!-- Left Sidebar Form -->
+        <!-- Left Form Card -->
         <section class="lg:col-span-5 bg-slate-950/80 border border-slate-800 p-5 rounded-3xl space-y-4 shadow-xl">
             <div class="border-b border-slate-800 pb-2">
                 <h2 class="text-base font-bold text-amber-400 flex items-center gap-2">
                     <i class="fa-solid fa-user-pen"></i> നിങ്ങളുടെ വിവരങ്ങൾ നൽകുക
                 </h2>
-                <p class="text-[11px] text-slate-400">പോസ്റ്ററിലെ നിശ്ചിത ഫ്രെയിമിലേക്ക് നിങ്ങളുടെ ഫോട്ടോയും പേരും തനിയെ സെറ്റ് ആകും.</p>
+                <p class="text-[11px] text-slate-400">പോസ്റ്ററിലെ രാജകീയ ഫ്രെയിമിലേക്ക് നിങ്ങളുടെ ഫോട്ടോയും പേരും തനിയെ സെറ്റ് ആകും.</p>
             </div>
 
             <div class="space-y-3">
@@ -111,7 +111,7 @@
             </button>
         </section>
 
-        <!-- Right Side Live View Layout -->
+        <!-- Right Side Live Preview Viewport -->
         <section class="lg:col-span-7 flex flex-col items-center justify-center w-full">
             <div class="preview-outer bg-slate-900 rounded-3xl shadow-2xl border border-slate-800/80">
                 <div id="scaledWrapper" class="preview-scale">
@@ -119,23 +119,18 @@
                     <!-- THE LIVE DIGITAL CANVAS SHEET -->
                     <div id="digitalCard">
                         
-                        <!-- NEW FEATURE: "ഞാൻ പങ്കെടുക്കും" Pledge Badge Ribbon overlaid inside the white frame -->
-                        <div style="position: absolute; top: 692px; left: 520px; width: 232px; background: linear-gradient(to right, #047857, #065f46); color: #f59e0b; text-align: center; font-family: 'Manjari', sans-serif; font-weight: 700; font-size: 11px; padding: 5px 2px; border-radius: 20px 20px 0 0; border-bottom: 2px solid #fbbf24; z-index: 20; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);">
-                            സമസ്ത സെന്റിനറിയിൽ ഞാൻ പങ്കെടുക്കും ഇൻശാഅല്ലാഹ്‌
-                        </div>
-
-                        <!-- Dynamic Supporter Photo Layer Positioned cleanly inside the frame below the pledge ribbon -->
-                        <div style="position: absolute; top: 718px; left: 520px; width: 232px; height: 159px; overflow: hidden; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                        <!-- Dynamic Supporter Photo Layer Layered precisely inside the bh04.jpg wooden frame inner area -->
+                        <div style="position: absolute; top: 735px; left: 694px; width: 198px; height: 215px; overflow: hidden; display: flex; align-items: center; justify-content: center; z-index: 10;">
                             <img id="cardPhoto" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=250" class="w-full h-full object-cover">
                         </div>
 
-                        <!-- Supporter Credentials Text Strings arranged over the built-in identity dotted lines -->
-                        <div style="position: absolute; top: 878px; left: 523px; width: 226px; text-align: center; font-family: 'Manjari', sans-serif; font-weight: 700; color: #1e293b; z-index: 10;">
-                            <div id="cardName" style="font-size: 19px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">നിങ്ങളുടെ പേര്</div>
-                            <div id="cardPlace" style="font-size: 14px; color: #047857; margin-top: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">നിങ്ങളുടെ സ്ഥലം</div>
+                        <!-- Supporter Credentials placed over the bottom text segment inside the frame with high contrast shadow -->
+                        <div style="position: absolute; top: 902px; left: 694px; width: 198px; text-align: center; font-family: 'Manjari', sans-serif; font-weight: 700; color: #ffffff; z-index: 20; text-shadow: 2px 2px 4px rgba(0,0,0,0.9), -1px -1px 0 rgba(0,0,0,0.9), 1px -1px 0 rgba(0,0,0,0.9), -1px 1px 0 rgba(0,0,0,0.9), 1px 1px 0 rgba(0,0,0,0.9);">
+                            <div id="cardName" style="font-size: 17px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">നിങ്ങളുടെ പേര്</div>
+                            <div id="cardPlace" style="font-size: 12px; color: #f59e0b; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px;">നിങ്ങളുടെ സ്ഥലം</div>
                         </div>
 
-                        <!-- Brand Identity Footer Tag at the lowest border safe layout area -->
+                        <!-- Brand Identity Footer Tag printed over the lower safely centered print zone -->
                         <div style="position: absolute; bottom: 8px; left: 0; right: 0; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #64748b; font-family: 'Poppins', sans-serif; text-transform: uppercase; opacity: 0.85;">
                             Powered by ATAVA DIGITAL SERVICES & TRADING
                         </div>
