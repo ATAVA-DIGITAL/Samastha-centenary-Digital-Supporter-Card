@@ -32,7 +32,7 @@
             flex-shrink: 0;
         }
 
-        /* Container that scales down the preview cleanly without disturbing internal pixel positioning */
+        /* Outer container managing the layout response */
         .preview-box-container {
             width: 100%;
             max-width: 400px;
@@ -43,7 +43,7 @@
             border: 1px solid #1e293b;
         }
 
-        /* 🪄 This handles the visual scaling beautifully on frontend without affecting html2canvas render */
+        /* Internal layout wrapper for dynamic responsive view scaling */
         #previewScaleWrapper {
             width: 800px;
             height: 1000px;
@@ -101,7 +101,7 @@
                     </label>
                 </div>
 
-                <!-- 🎛️ ADVANCED LEVEL CONTROLS (Sliders ranges tuned to fit the actual 800x1000 grid safely) -->
+                <!-- 🎛️ ADJUSTED CONTROLS - RE-CALIBRATED TO RAW PIXELS FOR EXACT HTML2CANVAS RENDER -->
                 <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-3">
                     <span class="text-xs font-bold text-emerald-400 block"><i class="fa-solid fa-sliders-up text-[10px]"></i> ഫോട്ടോ & ടെക്സ്റ്റ് ലെവൽ കൺട്രോൾ</span>
                     
@@ -118,18 +118,18 @@
                     <div>
                         <div class="flex justify-between text-[11px] font-medium text-slate-400 mb-1">
                             <span>ഫോട്ടോ മുകളിലേക്ക്/താഴേക്ക്</span>
-                            <span id="photoYVal">820px</span>
+                            <span id="photoYVal">745px</span>
                         </div>
-                        <input type="range" id="sliderPhotoY" min="650" max="950" value="820" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderPhotoY" min="650" max="850" value="745" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
 
                     <!-- Photo Horizontal (Left/Right) -->
                     <div>
                         <div class="flex justify-between text-[11px] font-medium text-slate-400 mb-1">
                             <span>ഫോട്ടോ ഇടത്തേക്ക്/വലത്തേക്ക്</span>
-                            <span id="photoXVal">796px</span>
+                            <span id="photoXVal">723px</span>
                         </div>
-                        <input type="range" id="sliderPhotoX" min="550" max="950" value="796" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderPhotoX" min="600" max="850" value="723" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
 
                     <hr class="border-slate-800 my-2">
@@ -138,18 +138,18 @@
                     <div>
                         <div class="flex justify-between text-[11px] font-medium text-slate-400 mb-1">
                             <span>പേര് മുകളിലേക്ക്/താഴേക്ക്</span>
-                            <span id="textYVal">925px</span>
+                            <span id="textYVal">915px</span>
                         </div>
-                        <input type="range" id="sliderTextY" min="800" max="990" value="925" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderTextY" min="850" max="980" value="915" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
 
                     <!-- Text Horizontal (Left/Right) -->
                     <div>
                         <div class="flex justify-between text-[11px] font-medium text-slate-400 mb-1">
                             <span>പേര് ഇടത്തേക്ക്/വലത്തേക്ക്</span>
-                            <span id="textXVal">796px</span>
+                            <span id="textXVal">710px</span>
                         </div>
-                        <input type="range" id="sliderTextX" min="550" max="950" value="796" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderTextX" min="600" max="850" value="710" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
                 </div>
             </div>
@@ -167,18 +167,18 @@
                     <!-- THE LIVE DIGITAL CANVAS SHEET -->
                     <div id="digitalCard">
                         
-                        <!-- DYNAMIC CIRCULAR SUPPORTER PHOTO -->
-                        <div id="photoContainer" style="position: absolute; top: 820px; left: 796px; width: 145px; height: 145px; transform: translate(-50%, -50%); overflow: hidden; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; border: 3px solid #b45309; box-shadow: 0 4px 12px rgba(0,0,0,0.6);">
+                        <!-- DYNAMIC CIRCULAR SUPPORTER PHOTO (Clean Absolute Positioning - NO CSS TRANSLATE TRANSFORMS) -->
+                        <div id="photoContainer" style="position: absolute; top: 745px; left: 723px; width: 146px; height: 146px; overflow: hidden; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; border: 3px solid #b45309; box-shadow: 0 4px 12px rgba(0,0,0,0.6);">
                             <img id="cardPhoto" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=250" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); transition: transform 0.05s ease;">
                         </div>
 
-                        <!-- CREDENTIALS TEXT BLOCK WITH HEAVY TEXT-SHADOW -->
-                        <div id="textContainer" style="position: absolute; top: 925px; left: 796px; width: 175px; transform: translateX(-50%); text-align: center; font-family: 'Manjari', sans-serif; font-weight: 700; color: #ffffff; z-index: 20; text-shadow: 3px 3px 5px rgba(0,0,0,1), -2px -2px 0 rgba(0,0,0,1), 2px -2px 0 rgba(0,0,0,1), -2px 2px 0 rgba(0,0,0,1), 2px 2px 0 rgba(0,0,0,1);">
+                        <!-- CREDENTIALS TEXT BLOCK (Clean Absolute Positioning - NO CSS TRANSLATE TRANSFORMS) -->
+                        <div id="textContainer" style="position: absolute; top: 915px; left: 710px; width: 175px; text-align: center; font-family: 'Manjari', sans-serif; font-weight: 700; color: #ffffff; z-index: 20; text-shadow: 3px 3px 5px rgba(0,0,0,1), -2px -2px 0 rgba(0,0,0,1), 2px -2px 0 rgba(0,0,0,1), -2px 2px 0 rgba(0,0,0,1), 2px 2px 0 rgba(0,0,0,1);">
                             <div id="cardName" style="font-size: 24px; line-height: 1.1; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">നിങ്ങളുടെ പേര്</div>
                             <div id="cardPlace" style="font-size: 17px; color: #fbbf24; margin-top: 3px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">നിങ്ങളുടെ സ്ഥലം</div>
                         </div>
 
-                        <!-- BRAND LOGO FOOTER: ഏറ്റവും താഴെ സുരക്ഷിതമായ ബ്ലാക്ക് സ്ട്രിപ്പിൽ -->
+                        <!-- BRAND LOGO FOOTER -->
                         <div style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.92); padding: 8px 0; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #f1f5f9; font-family: 'Poppins', sans-serif; text-transform: uppercase; border-top: 1px solid rgba(255,255,255,0.1); z-index: 30;">
                             Powered by ATAVA DIGITAL SERVICES & TRADING
                         </div>
@@ -199,7 +199,6 @@
 
     <!-- Image Processing Engine scripts -->
     <script>
-        // 🌟 New Responsive Scaler Logic that doesn't mess up html2canvas matrix
         function resizePreview() {
             const container = document.querySelector('.preview-box-container');
             const wrapper = document.getElementById('previewScaleWrapper');
@@ -213,7 +212,7 @@
         
         window.addEventListener('resize', resizePreview);
         window.addEventListener('DOMContentLoaded', resizePreview);
-        setTimeout(resizePreview, 200);
+        setTimeout(resizePreview, 250);
 
         function updateCard() {
             const name = document.getElementById('inputName').value.trim();
@@ -271,7 +270,6 @@
             btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Rendering HD Poster...`;
             btn.disabled = true;
 
-            // ⚡ html2canvas handles the clean 800x1000 structure directly with zero layout shifting
             html2canvas(card, {
                 useCORS: true,
                 scale: 3, 
