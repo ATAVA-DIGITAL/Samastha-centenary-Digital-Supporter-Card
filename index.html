@@ -32,22 +32,21 @@
             flex-shrink: 0;
         }
 
-        /* Fixed Viewport Box to handle proper responsiveness without cutting layout */
-        .preview-outer {
+        /* Container that scales down the preview cleanly without disturbing internal pixel positioning */
+        .preview-box-container {
             width: 100%;
             max-width: 400px;
-            aspect-ratio: 800 / 1000;
-            position: relative;
             overflow: hidden;
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+            background: #020617;
+            border: 1px solid #1e293b;
         }
 
-        .preview-scale {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* 🪄 This handles the visual scaling beautifully on frontend without affecting html2canvas render */
+        #previewScaleWrapper {
+            width: 800px;
+            height: 1000px;
             transform-origin: top left;
         }
     </style>
@@ -102,7 +101,7 @@
                     </label>
                 </div>
 
-                <!-- 🎛️ ADVANCED LEVEL CONTROLS -->
+                <!-- 🎛️ ADVANCED LEVEL CONTROLS (Sliders ranges tuned to fit the actual 800x1000 grid safely) -->
                 <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-3">
                     <span class="text-xs font-bold text-emerald-400 block"><i class="fa-solid fa-sliders-up text-[10px]"></i> ഫോട്ടോ & ടെക്സ്റ്റ് ലെവൽ കൺട്രോൾ</span>
                     
@@ -110,9 +109,9 @@
                     <div>
                         <div class="flex justify-between text-[11px] font-medium text-slate-400 mb-1">
                             <span>ഫോട്ടോ സൂം (Photo Zoom)</span>
-                            <span id="zoomVal">100%</span>
+                            <span id="zoomVal">120%</span>
                         </div>
-                        <input type="range" id="sliderZoom" min="50" max="250" value="100" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderZoom" min="50" max="250" value="120" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
 
                     <!-- Photo Vertical (Up/Down) -->
@@ -121,7 +120,7 @@
                             <span>ഫോട്ടോ മുകളിലേക്ക്/താഴേക്ക്</span>
                             <span id="photoYVal">820px</span>
                         </div>
-                        <input type="range" id="sliderPhotoY" min="700" max="950" value="820" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderPhotoY" min="650" max="950" value="820" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
 
                     <!-- Photo Horizontal (Left/Right) -->
@@ -130,7 +129,7 @@
                             <span>ഫോട്ടോ ഇടത്തേക്ക്/വലത്തേക്ക്</span>
                             <span id="photoXVal">796px</span>
                         </div>
-                        <input type="range" id="sliderPhotoX" min="650" max="950" value="796" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderPhotoX" min="550" max="950" value="796" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
 
                     <hr class="border-slate-800 my-2">
@@ -141,7 +140,7 @@
                             <span>പേര് മുകളിലേക്ക്/താഴേക്ക്</span>
                             <span id="textYVal">925px</span>
                         </div>
-                        <input type="range" id="sliderTextY" min="850" max="990" value="925" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderTextY" min="800" max="990" value="925" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
 
                     <!-- Text Horizontal (Left/Right) -->
@@ -150,7 +149,7 @@
                             <span>പേര് ഇടത്തേക്ക്/വലത്തേക്ക്</span>
                             <span id="textXVal">796px</span>
                         </div>
-                        <input type="range" id="sliderTextX" min="650" max="950" value="796" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        <input type="range" id="sliderTextX" min="550" max="950" value="796" oninput="adjustLevels()" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500">
                     </div>
                 </div>
             </div>
@@ -160,17 +159,17 @@
             </button>
         </section>
 
-        <!-- Right Side Live Preview Viewport (ഇപ്പോ പൂർണ്ണമായും ലായൗട്ട് ക്ലിയർ ആണ്) -->
+        <!-- Right Side Live Preview Viewport -->
         <section class="lg:col-span-7 flex items-center justify-center w-full">
-            <div class="preview-outer bg-slate-950 rounded-3xl shadow-2xl border border-slate-800">
-                <div id="scaledWrapper" class="preview-scale">
+            <div class="preview-box-container">
+                <div id="previewScaleWrapper">
                     
                     <!-- THE LIVE DIGITAL CANVAS SHEET -->
                     <div id="digitalCard">
                         
-                        <!-- DYNAMIC CIRCULAR SUPPORTER PHOTO (ഡിഫോൾട്ട് വാല്യൂസ് ഫ്രെയിമിലേക്ക് കൃത്യമാക്കി വെച്ചിട്ടുണ്ട്) -->
+                        <!-- DYNAMIC CIRCULAR SUPPORTER PHOTO -->
                         <div id="photoContainer" style="position: absolute; top: 820px; left: 796px; width: 145px; height: 145px; transform: translate(-50%, -50%); overflow: hidden; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 10; border: 3px solid #b45309; box-shadow: 0 4px 12px rgba(0,0,0,0.6);">
-                            <img id="cardPhoto" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=250" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform 0.05s ease;">
+                            <img id="cardPhoto" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=250" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); transition: transform 0.05s ease;">
                         </div>
 
                         <!-- CREDENTIALS TEXT BLOCK WITH HEAVY TEXT-SHADOW -->
@@ -200,19 +199,21 @@
 
     <!-- Image Processing Engine scripts -->
     <script>
+        // 🌟 New Responsive Scaler Logic that doesn't mess up html2canvas matrix
         function resizePreview() {
-            const outer = document.querySelector('.preview-outer');
-            const wrapper = document.getElementById('scaledWrapper');
-            if (outer && wrapper) {
-                const scale = outer.clientWidth / 800;
-                wrapper.style.transform = `scale(${scale})`;
+            const container = document.querySelector('.preview-box-container');
+            const wrapper = document.getElementById('previewScaleWrapper');
+            if (container && wrapper) {
+                const currentWidth = container.clientWidth;
+                const scaleFactor = currentWidth / 800;
+                wrapper.style.transform = `scale(${scaleFactor})`;
+                container.style.height = (1000 * scaleFactor) + 'px';
             }
         }
         
         window.addEventListener('resize', resizePreview);
         window.addEventListener('DOMContentLoaded', resizePreview);
-        // Secondary backup check to ensure render scaling is active
-        setTimeout(resizePreview, 300);
+        setTimeout(resizePreview, 200);
 
         function updateCard() {
             const name = document.getElementById('inputName').value.trim();
@@ -252,7 +253,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     document.getElementById('cardPhoto').src = e.target.result;
-                    document.getElementById('sliderZoom').value = 100;
+                    document.getElementById('sliderZoom').value = 120;
                     adjustLevels();
                     resizePreview();
                 }
@@ -270,10 +271,12 @@
             btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Rendering HD Poster...`;
             btn.disabled = true;
 
+            // ⚡ html2canvas handles the clean 800x1000 structure directly with zero layout shifting
             html2canvas(card, {
                 useCORS: true,
                 scale: 3, 
-                allowTaint: true
+                allowTaint: true,
+                logging: false
             }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = fileName;
